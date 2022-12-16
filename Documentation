@@ -1,0 +1,22 @@
+
+
+Cette api permet la gestion des regions dans son integralité
+
+
+1  Gestion d'un:
+    A) AJouter un pays (Method Post).
+    B) Modifier un pays (Method Put).
+    C) Supprimer Un pays (Method Delete).
+    D) Afficher les pays (Method Get).
+
+ 2 Gestion d'une region
+     A) AJouter un region (Method Post).
+     B) Modifier un region (Method Put).
+     C) Supprimer Un region (Method Delete).
+     D) Afficher les region (Method Get).
+
+ 2 Gestion d'une population
+     A) AJouter un population (Method Post).
+     B) Modifier un population (Method Put).
+     C) Supprimer Un population (Method Delete).
+     D) Afficher les population (Method Get).
