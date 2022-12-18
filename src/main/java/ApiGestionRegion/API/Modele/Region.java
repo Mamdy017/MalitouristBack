@@ -17,7 +17,11 @@ public class Region {
     private String code_region;
     private String nom;
     private String activite;
-    private float superficie;
+    private String superficie;
+    private String img1;
+    private String img2;
+    private String img3;
+    private String description;
     @ManyToOne
     Pays pays;
 }

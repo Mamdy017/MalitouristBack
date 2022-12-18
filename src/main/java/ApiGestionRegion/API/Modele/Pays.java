@@ -21,6 +21,8 @@ public class Pays {
     @Column(unique = true, length = 20)
     private String capital;
     private String drapeau;
+    private String image2;
     private String sperficie;
+
 
 }
