@@ -6,10 +6,12 @@ import lombok.NoArgsConstructor;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="pays")
 @Data
+@NoArgsConstructor
 
 
 public class Pays {
@@ -21,8 +23,11 @@ public class Pays {
     @Column(unique = true, length = 20)
     private String capital;
     private String drapeau;
-    private String image2;
     private String sperficie;
+    @OneToMany (mappedBy = "pays")
+    List<Region> regions;
 
-
+    public Pays(long idPays) {
+        this.Id = idPays;
+    }
 }

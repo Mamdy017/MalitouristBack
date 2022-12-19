@@ -15,6 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @Api(value = "apiregion", description = "Une API de GESTION des REGIONS pour faciliter a l'agence de touristes")
@@ -39,18 +41,15 @@ public class PaysController {
     @ApiOperation(value = "Ajouter2 un pays")
     @PostMapping("/ajout")
     public Object creer(@Param("nom") String nom, @Param("capital") String capital, @Param("superficie") String superficie,
-                        @Param("file") MultipartFile file,  @Param("file2") MultipartFile file2) throws IOException {
+                        @Param("file") MultipartFile file) throws IOException {
         Pays pays= new Pays();
         String NomDrapeau = StringUtils.cleanPath(file.getOriginalFilename());
-        String image2 = StringUtils.cleanPath(file.getOriginalFilename());
         pays.setNom(nom);
         pays.setCapital(capital);
         pays.setSperficie(superficie);
         pays.setDrapeau(NomDrapeau);
-        pays.setImage2(image2);
-        String uploDirPays ="C:\\Users\\Camara\\Desktop\\ApiRegion\\MaliTourist\\MaliTouristBack\\src\\main\\resources\\image";
+        String uploDirPays ="C:\\Users\\mccamara\\Desktop\\MaliTourist\\ApiRegion\\src\\main\\resources\\image";
         image.saveimg(uploDirPays, NomDrapeau, file);
-        image.saveimg(uploDirPays, image2, file);
         return paysService.creer(pays);
 
     }
@@ -59,7 +58,6 @@ public class PaysController {
     @ApiOperation(value = "La liste des pays")
     @GetMapping("/liste")
     public List<Pays> list(){
-
         return paysService.lire();
     }
 
@@ -78,4 +76,9 @@ public class PaysController {
         return paysService.supprimer(Id);
     }
 
+    @ApiOperation(value = "recuperer un pays par son id")
+    @GetMapping("/{id}")
+    Optional<Pays> paysParId(@PathVariable Long id){
+        return  paysService.paysParId(id);
+    }
 }

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 @Data
 @AllArgsConstructor
@@ -36,5 +38,10 @@ public class PaysServiceImpl implements PaysService {
     public String supprimer(Long Id) {
          this.paysRepository.deleteById(Id);
         return "Pays" +Id+ "supprimer avec succès";
+    }
+
+    @Override
+    public Optional<Pays> paysParId(Long id) {
+        return paysRepository.findById(id);
     }
 }

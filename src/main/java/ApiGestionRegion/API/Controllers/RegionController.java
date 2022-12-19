@@ -29,7 +29,7 @@ public class RegionController {
     private final RegionService RegionService;
 
     @ApiOperation(value = "Ajouter une region")
-    @PostMapping("/creer")
+    @PostMapping("/ajout")
 
     public Object create(@RequestBody Region Region) {
 
@@ -42,27 +42,9 @@ public class RegionController {
 
     }
 
-    @PostMapping("/ajout/{idPays}")
-    public Object create(@Param("nom") String nom, @Param("code_region") String code_region, @Param("activite") String activite,
-                         @PathVariable String idPyas, @Param("superficie") String superficie, @Param("description") String description,
-                         @Param("file") MultipartFile file,@Param("file3") MultipartFile file3,  @Param("file2") MultipartFile file2) throws IOException {
-        Region region= new Region();
-        String img1 = StringUtils.cleanPath(file.getOriginalFilename());
-        String img2 = StringUtils.cleanPath(file2.getOriginalFilename());
-        String img3 = StringUtils.cleanPath(file2.getOriginalFilename());
-        region.setNom(nom);
-        region.setCode_region(code_region);
-        region.setActivite(activite);
-        region.setSuperficie(superficie);
-        region.setDescription(description);
-        region.setImg1(img1);
-        region.setImg2(img2);
-        region.setImg3(img3);
-        String uploRegion ="C:\\Users\\Camara\\Desktop\\ApiRegion\\MaliTourist\\MaliTouristBack\\src\\main\\resources\\image";
-        image.saveimgR(uploRegion, img1,  file);
-        image.saveimgR(uploRegion, img2,  file);
-        image.saveimgR(uploRegion, img3,  file);
-        return RegionService.creer(region);
+    @PostMapping("/upload/")
+    public void upload(@RequestParam("file") MultipartFile file) throws IOException {
+         RegionService.uploaderImage(file);
 
     }
 

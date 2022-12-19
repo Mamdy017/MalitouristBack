@@ -2,12 +2,15 @@ package ApiGestionRegion.API.Services;
 
 import ApiGestionRegion.API.Modele.Region;
 import ApiGestionRegion.API.Repositories.RegionRepository;
+import ApiGestionRegion.API.img.image;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.StringWriter;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 @Data
 @Service
@@ -51,6 +54,15 @@ public class RegionServiceImpl implements RegionService{
     public List<Object[]> getRegionsP() {
         // TODO Auto-generated method stub
         return regionRepository.getRegionsP() ;
+    }
+
+    @Override
+    public void uploaderImage(MultipartFile file ) throws IOException {
+        System.out.println("----------------------------------------------");
+//        String img3 = StringUtils.cleanPath(file.getOriginalFilename());
+//        String uploRegion ="C:\\Users\\mccamara\\Desktop\\MaliTourist\\ApiRegion\\src\\main\\resources\\image";
+        file.transferTo(new File("C:\\Users\\mccamara\\Desktop\\MaliTourist\\ApiRegion\\src\\main\\resources\\image\\"+file.getOriginalFilename()));
+//        image.saveimgR(uploRegion, img3,  file);
     }
 
 
